@@ -143,6 +143,27 @@
             border-color: var(--azul-pe);
         }
 
+        /* Link especial para Jovens Brilhantes */
+        .jb-notice {
+            margin-top: 18px;
+            font-size: 14.5px;
+            color: var(--texto-secundario);
+            border-top: 1px dashed var(--borda);
+            padding-top: 15px;
+            line-height: 1.5;
+        }
+
+        .jb-link {
+            color: var(--amarelo-pe);
+            text-decoration: underline;
+            font-weight: 700;
+            transition: color 0.2s ease;
+        }
+
+        .jb-link:hover {
+            color: var(--verde-pe);
+        }
+
         /* Barra de progresso moderna */
         .progress-container {
             display: flex;
@@ -500,6 +521,9 @@
         <div class="quiz-box">
             <h3>Identificação Necessária</h3>
             <p>Por favor, informe seu e-mail de associado para iniciar o enigma cronometrado e registrar sua participação no segredo.</p>
+            <div class="jb-notice">
+                Se você for um <strong>Jovem Brilhante (JB)</strong> da Mensa Brasil, <a href="https://ag2027-mb.github.io/Enigma/#" class="jb-link">clique aqui</a> para resolver o Enigma.
+            </div>
         </div>
         <div class="email-form-box">
             <input type="email" id="mensa-email" class="email-input" placeholder="seu-email@mensa.org.br" required autocorrect="off" autocapitalize="none">
@@ -606,7 +630,7 @@
                 texto: "Um arquipélago vulcânico isolado com praias paradisíacas e um dos santuários ecológicos mais preservados do mundo administrativamente faz parte desta região secreta. De qual santuário de águas transparentes estamos falando?",
                 opcoes: ["Abrolhos", "Atol das Rocas", "Trindade", "Fernando de Noronha"],
                 correta: "Fernando de Noronha",
-                dica: "Seu nome homenageia o fidalgo português Fernão de Loronha, que recebeu o território por doação régia."
+                dica: "Seu nome homenageia o fidalgo português Fernão de Loronha, que recebeu o território por dação régia."
             },
             {
                 titulo: "Enigma 7: O Grande Teatro ao Ar Livre",
@@ -773,7 +797,7 @@
 
         function exibirNotificacao(mensagem) {
             const toast = document.getElementById("toast-message");
-            toast.innerText = mensagem;
+            toast.innerText = message = mensagem;
             toast.style.display = "block";
         }
 
@@ -883,4 +907,3 @@
     </script>
 </body>
 </html>
-```
