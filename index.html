@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anual Gathering 2027 - Mensa Brasil</title>
+    <style>
+        :root {
+            --fundo: #09090b;        /* Preto profundo moderno */
+            --card-fundo: #18181b;   /* Grafite elegante para os cards */
+            --texto-principal: #f4f4f5; /* Branco suave para leitura */
+            --texto-secundario: #a1a1aa; /* Cinza para explicações */
+            --azul-pe: #0056b3;      /* Azul da bandeira */
+            --amarelo-pe: #ffcc00;   /* Dourado do sol */
+            --verde-pe: #10b981;     /* Verde-esmeralda vibrante */
+            --vermelho-pe: #ef4444;  /* Vermelho da bandeira */
+            --borda: #27272a;        /* Borda sutil */
+        }
+
+        /* Reset e Configurações de Tela */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--fundo);
+            color: var(--texto-principal);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .glow-1 {
+            position: absolute;
+            top: -10%;
+            left: 25%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 86, 179, 0.15) 0%, transparent 70%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .glow-2 {
+            position: absolute;
+            bottom: 5%;
+            right: 20%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 30px;
+            max-width: 650px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        /* Cérebro Verde em SVG estilizado */
+        .brain-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px auto;
+            display: block;
+            filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.4));
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        .main-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff 0%, var(--amarelo-pe) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sub-header-text {
+            color: var(--texto-secundario);
+            font-size: 15px;
+            font-style: italic;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 100%;
+            background: var(--card-fundo);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            box-sizing: border-box;
+            border: 1px solid var(--borda);
+            z-index: 2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Barra de progresso moderna */
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .progress-text {
+            color: var(--amarelo-pe);
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .progress-bar-bg {
+            flex-grow: 1;
+            height: 6px;
+            background-color: #27272a;
+            border-radius: 3px;
+            margin-left: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--azul-pe), var(--verde-pe));
+            width: 6.66%; /* 1/15 inicial */
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .quiz-box {
+            border-left: 4px solid var(--azul-pe);
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+
+        .quiz-box h3 {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .quiz-box p {
+            line-height: 1.6;
+            font-size: 15.5px;
+            color: #e4e4e7;
+        }
+
+        /* Opções de Resposta Premium */
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border: 1px solid var(--borda);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background-color: #202023;
+            color: #e4e4e7;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-label:hover {
+            background-color: #27272a;
+            border-color: var(--azul-pe);
+            color: #ffffff;
+        }
+
+        .option-label.selected {
+            background-color: rgba(0, 86, 179, 0.15);
+            border-color: var(--azul-pe);
+            color: #ffffff;
+            box-shadow: inset 0 0 0 1px var(--azul-pe);
+        }
+
+        .option-label input {
+            display: none; /* Escondendo o radio padrão */
+        }
+
+        .custom-radio {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #52525b;
+            border-radius: 50%;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .option-label.selected .custom-radio {
+            border-color: var(--amarelo-pe);
+            background-color: var(--amarelo-pe);
+        }
+
+        .option-label.selected .custom-radio::after {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background-color: #000000;
+            border-radius: 50%;
+        }
+
+        .action-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--azul-pe) 0%, #004085 100%);
+            color: #ffffff;
+            border: none;
+            padding: 16px 24px;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 15px;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, var(--amarelo-pe) 0%, #e6b800 100%);
+            color: #000000;
+            box-shadow: 0 4px 12px rgba(255, 204, 0, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .hint-toggle {
+            color: var(--verde-pe);
+            cursor: pointer;
+            font-size: 13.5px;
+            text-decoration: none;
+            margin-top: 5px;
+            display: inline-block;
+            font-weight: 700;
+            align-self: center;
+            transition: color 0.2s;
+        }
+
+        .hint-toggle:hover {
+            color: var(--amarelo-pe);
+        }
+
+        .hint-container {
+            margin-top: 10px;
+            background: #202023;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: none;
+            border-left: 3px solid var(--verde-pe);
+            color: #d4d4d8;
+            line-height: 1.5;
+        }
+
+        /* Sistema de Alerta Customizado (substitui o alert nativo) */
+        .notification-toast {
+            background-color: rgba(239, 68, 110, 0.15);
+            color: var(--vermelho-pe);
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid var(--vermelho-pe);
+            font-size: 14px;
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+
+        .reveal-box {
+            display: none;
+            background: linear-gradient(180deg, #18181b 0%, #0d0d0d 100%);
+            color: white;
+            padding: 50px 35px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid var(--amarelo-pe);
+            box-shadow: 0 0 40px rgba(255, 204, 0, 0.15);
+            z-index: 5;
+            position: relative;
+        }
+
+        .reveal-box h1 { 
+            color: var(--amarelo-pe); 
+            font-size: 34px;
+            font-weight: 900;
+            text-shadow: 0 2px 15px rgba(255,204,0,0.4);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .reveal-box h2 { 
+            font-size: 22px; 
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .reveal-box h3 { 
+            color: var(--vermelho-pe); 
+            font-size: 38px; 
+            font-weight: 950;
+            margin: 25px 0 10px 0; 
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .reveal-cities {
+            font-size: 22px; 
+            font-weight: 800; 
+            color: var(--amarelo-pe); 
+            margin-bottom: 10px;
+        }
+
+        .reveal-date {
+            font-size: 16px; 
+            color: var(--texto-principal); 
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            background: #27272a;
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .reveal-box hr { 
+            border: none; 
+            border-top: 1px solid var(--borda); 
+            width: 80%; 
+            margin: 25px auto; 
+        }
+
+        .reveal-box p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #d4d4d8;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* Detalhe representativo da bandeira */
+        .bandeira-detalhe {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .barra {
+            width: 45px;
+            height: 7px;
+            border-radius: 4px;
+        }
+
+        /* Canvas Invisível para Confetes Próprios */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 10;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="header-container">
+        <!-- Ícone do Cérebro Verde em SVG Puro -->
+        <svg class="brain-icon" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M196.2 113.8c-12.7 0-25 2.1-36.6 6-6.1-22.3-26.3-38.9-50.5-38.9-28.7 0-52 23.3-52 52 0 11.4 3.7 21.9 9.9 30.5-18.7 13.9-30.8 35.9-30.8 60.8 0 25.1 12.3 47.3 31.2 61.1-6.1 8.5-9.7 19-9.7 30.3 0 28.7 23.3 52 52 52 16.5 0 31.1-7.7 40.7-19.8 13.5 15.6 33.3 25.6 55.6 25.6 15.8 0 30.4-5.1 42.4-13.8 11 11.5 26.5 18.7 43.8 18.7h16V113.8h-12z" fill="#10b981"/>
+            <path d="M315.8 113.8h-12v313.9h16c17.3 0 32.8-7.2 43.8-18.7 12 8.7 26.6 13.8 42.4 13.8 22.3 0 42.1-10 55.6-25.6 9.6 12.1 24.2 19.8 40.7 19.8 28.7 0 52-23.3 52-52 0-11.3-3.6-21.8-9.7-30.3 18.9-13.8 31.2-36 31.2-61.1 0-24.9-12.1-46.9-30.8-60.8 6.2-8.6 9.9-19.1 9.9-30.5 0-28.7-23.3-52-52-52-24.2 0-44.4 16.6-50.5 38.9-11.6-3.9-23.9-6-36.6-6z" fill="#047857"/>
+        </svg>
+        <h1 class="main-title">Anual Gathering 2027</h1>
+        <p class="sub-header-text">Responda este questionário com dicas e descubra onde vai ser.</p>
+    </div>
+
+    <div class="container" id="quiz-container">
+        
+        <!-- Notificação de Erro Embutida -->
+        <div class="notification-toast" id="toast-message"></div>
+
+        <div class="progress-container">
+            <span class="progress-text" id="progress-info">Questão 1 de 15</span>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-indicator"></div>
+            </div>
+        </div>
+
+        <div class="quiz-box">
+            <h3 id="question-title">Carregando pergunta...</h3>
+            <p id="question-text">Carregando contexto do enigma...</p>
+        </div>
+
+        <div class="options-container" id="options-block"></div>
+
+        <div class="action-container">
+            <button class="btn" onclick="checkAnswer()">Confirmar Resposta & Avançar</button>
+            <div class="hint-toggle" onclick="toggleHint()">💡 Precisa de uma pista de alto QI?</div>
+            <div class="hint-container" id="hint-box"></div>
+        </div>
+    </div>
+
+    <div class="container reveal-box" id="reveal-container">
+        <h1>O MISTÉRIO FOI REVELADO!</h1>
+        <h2>Preparem as malas para o Nordeste!</h2>
+        <p>
+            Parabéns, mente brilhante! Suas deduções lógicas e refinamento cultural desvendaram com maestria todos os enigmas. O segredo foi quebrado!
+        </p>
+        <hr>
+        <h2 style="font-size: 16px; letter-spacing: 3px; margin-bottom: 0; color: var(--texto-secundario);">ANNUAL GATHERING (AG) 2027</h2>
+        <h3>PERNAMBUCO</h3>
+        <p class="reveal-cities">Recife | Olinda | Porto de Galinhas</p>
+        <span class="reveal-date">📅 26 a 30 de Maio de 2027</span>
+        <p style="font-size: 14px; color: var(--texto-secundario);">
+            As acomodações e a programação detalhada serão enviadas de forma segura diretamente para o e-mail de todos os membros associados em breve. Até lá, guarde este segredo!
+        </p>
+        
+        <div class="bandeira-detalhe">
+            <div class="barra" style="background-color: var(--azul-pe);"></div>
+            <div class="barra" style="background-color: var(--amarelo-pe);"></div>
+            <div class="barra" style="background-color: var(--verde-pe);"></div>
+            <div class="barra" style="background-color: var(--vermelho-pe);"></div>
+        </div>
+    </div>
+
+    <script>
+        // Banco de perguntas cuidadosamente ordenado de acordo com as especificações
+        const perguntas = [
+            // --- BLOCO 1: CULTURA, GEOGRAFIA E CURIOSIDADES GERAIS (Q1 a Q11) ---
+            {
+                titulo: "Enigma 1: A Gastronomia em Camadas",
+                texto: "Um dos maiores símbolos culinários desta região é um doce considerado patrimônio imaterial. Feito com finíssimas camadas de massa e recheio de goiabada derretida, é enrolado milimetricamente de forma única. Qual é essa obra-prima açucarada?",
+                opcoes: ["Rocambole Serrano", "Bolo Souza Leão", "Bolo de Rolo", "Cartola com Canela"],
+                correta: "Bolo de Rolo",
+                dica: "Diferencia-se do rocambole pois suas camadas de recheio e massa assada são quase tão finas quanto uma folha de papel."
+            },
+            {
+                titulo: "Enigma 2: Ritmos Ritmados pelo Guarda-Chuva",
+                texto: "Uma expressão artística fascinante, declarada Patrimônio Cultural Imaterial da Humanidade pela UNESCO, é caracterizada por passos acrobáticos vigorosos e rápidos, executados com um pequeno guarda-chuva colorido. Qual é esse ritmo contagiante?",
+                opcoes: ["Samba de Roda", "Axé Music", "Maracatu Atômico", "Frevo"],
+                correta: "Frevo",
+                dica: "O termo deriva do falar popular de 'ferver', traduzindo a sensação térmica e festiva que o ritmo evoca."
+            },
+            {
+                titulo: "Enigma 3: O Berço da Inovação",
+                texto: "Um dos principais polos tecnológicos do Brasil, abrigando centenas de startups, multinacionais de TI e geradores de economia criativa, está situado em um charmoso bairro histórico cercado de rios. Qual é o nome desse renomado parque?",
+                opcoes: ["Porto Digital", "Vale do Silício Nordestino", "San Pedro Tech", "Cenesp"],
+                correta: "Porto Digital",
+                dica: "A nomenclatura faz alusão direta à história portuária da ilha no centro da capital anfitriã."
+            },
+            {
+                titulo: "Enigma 4: O Galo Inigualável",
+                texto: "O maior bloco carnavalesco do planeta pelo Guinness Book desfila aos sábados arrastando mais de dois milhões de foliões pelas pontes e avenidas da cidade. Qual é este majestoso símbolo matinal?",
+                opcoes: ["Cordão da Bola Preta", "Monobloco", "Filhos de Gandhy", "Galo da Madrugada"],
+                correta: "Galo da Madrugada",
+                dica: "Seu nome faz menção direta ao canto do galo que acorda o folião logo cedo no sábado de Carnaval."
+            },
+            {
+                titulo: "Enigma 5: Artesanato Tradicional de Barro",
+                texto: "O Alto do Moura é reconhecido internacionalmente como um imenso centro de arte figurativa, popularizando os bonecos de barro que imortalizam o cotidiano nordestino. Em qual cidade fica este polo inspirado no Mestre Vitalino?",
+                opcoes: ["Juazeiro do Norte", "Caruaru", "Campina Grande", "Petrolina"],
+                correta: "Caruaru",
+                dica: "Esta famosa cidade do agreste também sedia uma das festividades juninas mais concorridas do Brasil."
+            },
+            {
+                titulo: "Enigma 6: O Ponto Mais Oriental",
+                texto: "Um arquipélago vulcânico isolado com praias paradisíacas e um dos santuários ecológicos mais preservados do mundo administrativamente faz parte desta região secreta. De qual santuário de águas transparentes estamos falando?",
+                opcoes: ["Abrolhos", "Atol das Rocas", "Trindade", "Fernando de Noronha"],
+                correta: "Fernando de Noronha",
+                dica: "Seu nome homenageia o fidalgo português Fernão de Loronha, que recebeu o território por doação régia."
+            },
+            {
+                titulo: "Enigma 7: O Grande Teatro ao Ar Livre",
+                texto: "Esta região abriga o maior teatro ao ar livre do planeta, construído inteiramente em pedra em meio à vegetação nativa da Caatinga, onde anualmente é encenado um grandioso espetáculo de repercussão global. Qual o nome dessa cidade cenográfica?",
+                opcoes: ["Nova Jerusalém", "Teatro Oficina", "Curitiba Cenográfica", "Ouro Preto"],
+                correta: "Nova Jerusalém",
+                dica: "Fica localizada no município de Brejo da Madre de Deus."
+            },
+            {
+                titulo: "Enigma 8: O Ecossistema Exclusivo",
+                texto: "A vegetação nativa do sertão desta região é o único bioma exclusivamente brasileiro, composto por plantas xerófilas que se adaptam perfeitamente à escassez de chuvas. Como se chama essa floresta branca?",
+                opcoes: ["Cerrado", "Caatinga", "Mata Atlântica", "Pantanal"],
+                correta: "Caatinga",
+                dica: "Na língua tupi, o termo significa literalmente 'mata branca', devido ao aspecto acinzentado na seca."
+            },
+            {
+                titulo: "Enigma 9: Uma Revolução Libertária",
+                texto: "Em 1817, este território se rebelou contra a Coroa Portuguesa e instituiu sua própria república independente por 75 dias, possuindo bandeira, leis e constituição próprias. Qual revolução histórica marcou essa terra?",
+                opcoes: ["Inconfidência Mineira", "Revolução Pernambucana", "Cabanagem", "Guerra dos Farrapos"],
+                correta: "Revolução Pernambucana",
+                dica: "Esse movimento libertador influenciou diretamente o desenho da atual bandeira do estado."
+            },
+            {
+                titulo: "Enigma 10: O Som das Alfaias",
+                texto: "Um som majestoso e percussivo regido pelas 'alfaias', característico dos maracatus locais, simboliza a ancestralidade africana nas ruas históricas. De qual ritmo de origem negra e corte real estamos falando?",
+                opcoes: ["Maracatu", "Samba", "Choro", "Bossa Nova"],
+                correta: "Maracatu",
+                dica: "As nações de baque virado prestam homenagens a reis e rainhas do Congo."
+            },
+            {
+                titulo: "Enigma 11: A Primeira das Américas",
+                texto: "Fundada em 1636 no período holandês, a Kahal Zur Israel é reconhecida historicamente por qual pioneirismo cultural e religioso no Novo Mundo?",
+                opcoes: ["Primeira Igreja Anglicana", "Primeira Sinagoga das Américas", "Primeiro Monastério Budista", "Primeira Catedral Católica"],
+                correta: "Primeira Sinagoga das Américas",
+                dica: "Suas ruínas foram escavadas e hoje formam um importante centro arqueológico cultural."
+            },
+
+            // --- BLOCO 2: AS CIDADES ANFITRIÃS (Q12 a Q14) ---
+            {
+                titulo: "Enigma 12: As Ladeiras e os Bonecos Gigantes",
+                texto: "A primeira sede secreta do AG 2027 é uma joia declarada Patrimônio Histórico da Humanidade pela UNESCO. Suas ladeiras íngremes de paralelepípedo abrigam as lendas dos gigantes foliões de papel-machê de 4 metros de altura. Qual é a cidade?",
+                opcoes: ["Ouro Preto", "Salvador", "Olinda", "São Luís"],
+                correta: "Olinda",
+                dica: "O nome se originou de uma exclamação sobre a formosa vista do mar: 'Oh, linda situação para se fundar uma vila!'"
+            },
+            {
+                titulo: "Enigma 13: Pontes, Rios e a Capital Cultural",
+                texto: "Nossa segunda sede é uma metrópole vibrante, apelidada carinhosamente de 'Veneza Brasileira' devido a seus canais e majestosas pontes. É o berço de poetas intelectuais célebres e centro econômico principal. Qual cidade é esta?",
+                opcoes: ["Vitória", "Belém", "Florianópolis", "Recife"],
+                correta: "Recife",
+                dica: "O nome desta cidade origina-se diretamente das formações rochosas marítimas de corais que desenham a sua orla."
+            },
+            {
+                titulo: "Enigma 14: As Piscinas Naturais de Águas Mornas",
+                texto: "A terceira sede oficial do AG 2027 é um antigo porto de pescadores. Hoje, é famosa por suas jangadas flutuantes que levam turistas a deslumbrantes piscinas de recifes cheias de peixes multicoloridos. Qual é este paraíso litorâneo?",
+                opcoes: ["Arraial do Cabo", "Porto de Galinhas", "Jericoacoara", "Maragogi"],
+                correta: "Porto de Galinhas",
+                dica: "No século XIX, para despistar fiscais da escravidão, anunciava-se a carga de aves dizendo secretamente: 'Tem galinha nova no porto!'"
+            },
+
+            // --- BLOCO 3: O ESTADO REVELADO (Q15) ---
+            {
+                titulo: "Enigma Final: O Estado do Leão do Norte",
+                texto: "Se unirmos os mistérios das ladeiras históricas de Olinda, as pontes cosmopolitas do Recife e os arrecifes translúcidos de Porto de Galinhas... Que estado majestoso do Nordeste sediará este encontro histórico de 2027?",
+                opcoes: ["Bahia", "Ceará", "Pernambuco", "Rio Grande do Norte"],
+                correta: "Pernambuco",
+                dica: "Sua bandeira azul e branca ostenta um brilhante arco-íris, um sol dourado e uma cruz vermelha."
+            }
+        ];
+
+        let passoAtual = 0;
+
+        function carregarPergunta() {
+            if (passoAtual >= perguntas.length) {
+                mostrarRevelacao();
+                return;
+            }
+
+            const p = perguntas[passoAtual];
+            
+            // Atualizar o progresso
+            document.getElementById("progress-info").innerText = `Questão ${passoAtual + 1} de ${perguntas.length}`;
+            const percentual = ((passoAtual + 1) / perguntas.length) * 100;
+            document.getElementById("progress-indicator").style.width = `${percentual}%`;
+
+            // Configurar textos
+            document.getElementById("question-title").innerText = p.titulo;
+            document.getElementById("question-text").innerText = p.texto;
+            document.getElementById("hint-box").innerText = p.dica;
+            
+            // Ocultar elementos auxiliares antigos
+            document.getElementById("hint-box").style.display = "none";
+            ocultarNotificacao();
+
+            // Montar opções de forma moderna
+            const optionsBlock = document.getElementById("options-block");
+            optionsBlock.innerHTML = "";
+
+            p.opcoes.forEach(opcao => {
+                const label = document.createElement("label");
+                label.className = "option-label";
+                label.innerHTML = `
+                    <input type="radio" name="quiz-opt" value="${opcao}" onchange="selectOption(this)">
+                    <div class="custom-radio"></div>
+                    <span>${opcao}</span>
+                `;
+                optionsBlock.appendChild(label);
+            });
+        }
+
+        function selectOption(input) {
+            // Remover destaque visual das outras labels
+            const labels = document.querySelectorAll(".option-label");
+            labels.forEach(l => l.classList.remove("selected"));
+
+            // Destacar apenas a selecionada
+            input.parentElement.classList.add("selected");
+            ocultarNotificacao();
+        }
+
+        function checkAnswer() {
+            const selecionado = document.querySelector('input[name="quiz-opt"]:checked');
+            
+            if (!selecionado) {
+                exibirNotificacao("Por favor, selecione uma alternativa antes de avançar!");
+                return;
+            }
+
+            if (selecionado.value === perguntas[passoAtual].correta) {
+                passoAtual++;
+                carregarPergunta();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                exibirNotificacao("Resposta incorreta! Um mensano de alto calibre sempre reavalia suas hipóteses. Use a dica e tente novamente!");
+            }
+        }
+
+        function exibirNotificacao(mensagem) {
+            const toast = document.getElementById("toast-message");
+            toast.innerText = mensagem;
+            toast.style.display = "block";
+        }
+
+        function ocultarNotificacao() {
+            document.getElementById("toast-message").style.display = "none";
+        }
+
+        function toggleHint() {
+            const hb = document.getElementById("hint-box");
+            hb.style.display = hb.style.display === "block" ? "none" : "block";
+        }
+
+        function mostrarRevelacao() {
+            document.getElementById("quiz-container").style.display = "none";
+            document.querySelector(".header-container").style.display = "none";
+            document.getElementById("reveal-container").style.display = "block";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Iniciar o festival de confetes nativo no canvas
+            const canvas = document.getElementById("confetti-canvas");
+            canvas.style.display = "block";
+            iniciarConfetes(canvas);
+        }
+
+        // Motor
