@@ -69,9 +69,9 @@
             z-index: 2;
         }
 
-        /* Cérebro Verde em SVG estilizado */
+        /* Logo carregado localmente com brilho pulsante */
         .brain-icon {
-            width: 70px;
+            width: auto;
             height: 70px;
             margin: 0 auto 15px auto;
             display: block;
@@ -508,10 +508,8 @@
     <canvas id="confetti-canvas"></canvas>
 
     <div class="header-container">
-        <svg class="brain-icon" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M196.2 113.8c-12.7 0-25 2.1-36.6 6-6.1-22.3-26.3-38.9-50.5-38.9-28.7 0-52 23.3-52 52 0 11.4 3.7 21.9 9.9 30.5-18.7 13.9-30.8 35.9-30.8 60.8 0 25.1 12.3 47.3 31.2 61.1-6.1 8.5-9.7 19-9.7 30.3 0 28.7 23.3 52 52 52 16.5 0 31.1-7.7 40.7-19.8 13.5 15.6 33.3 25.6 55.6 25.6 15.8 0 30.4-5.1 42.4-13.8 11 11.5 26.5 18.7 43.8 18.7h16V113.8h-12z" fill="#10b981"/>
-            <path d="M315.8 113.8h-12v313.9h16c17.3 0 32.8-7.2 43.8-18.7 12 8.7 26.6 13.8 42.4 13.8 22.3 0 42.1-10 55.6-25.6 9.6 12.1 24.2 19.8 40.7 19.8 28.7 0 52-23.3 52-52 0-11.3-3.6-21.8-9.7-30.3 18.9-13.8 31.2-36 31.2-61.1 0-24.9-12.1-46.9-30.8-60.8 6.2-8.6 9.9-19.1 9.9-30.5 0-28.7-23.3-52-52-52-24.2 0-44.4 16.6-50.5 38.9-11.6-3.9-23.9-6-36.6-6z" fill="#047857"/>
-        </svg>
+        <!-- Logo carregado localmente, substituindo o SVG antigo -->
+        <img class="brain-icon" src="./logo.png" alt="Mensa Brasil" onerror="this.onerror=null; this.src='https://placehold.co/120x70/18181b/10b981?text=Mensa+Brasil';">
         <h1 class="main-title">Anual Gathering 2027 - Mensa Brasil</h1>
         <p class="sub-header-text">Responda este questionário com dicas e descubra onde vai ser.</p>
     </div>
@@ -662,7 +660,7 @@
             },
             {
                 titulo: "Enigma 11: A Primeira das Américas",
-                texto: "Fundada em 1636 no período holandês, a Kahal Zur Israel é reconhecida historicamente por qual pioneirismo cultural e religioso no Novo Mundo?",
+                texto: "Fundada in 1636 no período holandês, a Kahal Zur Israel é reconhecida historicamente por qual pioneirismo cultural e religioso no Novo Mundo?",
                 opcoes: ["Primeira Igreja Anglicana", "Primeira Sinagoga das Américas", "Primeiro Monastério Budista", "Primeira Catedral Católica"],
                 correta: "Primeira Sinagoga das Américas",
                 dica: "Suas ruínas foram escavadas e hoje formam um importante centro arqueológico cultural."
@@ -797,7 +795,7 @@
 
         function exibirNotificacao(mensagem) {
             const toast = document.getElementById("toast-message");
-            toast.innerText = message = mensagem;
+            toast.innerText = mensagem;
             toast.style.display = "block";
         }
 
@@ -842,7 +840,6 @@
             iniciarConfetes(canvas);
         }
 
-        // Motor nativo de Confetes autônomo (100% livre de conexões externas para evitar bloqueio de cookies/CDNs)
         function iniciarConfetes(canvas) {
             const ctx = canvas.getContext("2d");
             let animId;
