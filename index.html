@@ -103,6 +103,7 @@
             max-width: 500px;
             margin: 0 auto;
             line-height: 1.5;
+            text-align: center;
         }
 
         .container {
@@ -116,6 +117,30 @@
             border: 1px solid var(--borda);
             z-index: 2;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Form de E-mail Inicial */
+        .email-form-box {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 16px 20px;
+            background-color: #202023;
+            border: 1px solid var(--borda);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .email-input:focus {
+            border-color: var(--azul-pe);
         }
 
         /* Barra de progresso moderna */
@@ -316,6 +341,44 @@
             75% { transform: translateX(6px); }
         }
 
+        /* Box de Informações de Tempo e Participante no Painel Final */
+        .stats-box {
+            background-color: #1f1f23;
+            border: 1px solid var(--borda);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px auto;
+            max-width: 500px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .stats-box p {
+            font-size: 14px;
+            color: #d4d4d8;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #27272a;
+            padding-bottom: 8px;
+        }
+
+        .stats-box p:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .stats-box strong {
+            color: var(--amarelo-pe);
+        }
+
+        .stats-val {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
         .reveal-box {
             display: none;
             background: linear-gradient(180deg, #18181b 0%, #0d0d0d 100%);
@@ -366,7 +429,7 @@
             color: var(--texto-principal); 
             letter-spacing: 2px;
             font-weight: 600;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             background: #27272a;
             display: inline-block;
             padding: 8px 16px;
@@ -402,7 +465,7 @@
             border-radius: 4px;
         }
 
-        /* Canvas Invisível para Confetes Próprios */
+        /* Canvas para Confetes Próprios */
         #confetti-canvas {
             position: fixed;
             top: 0;
@@ -420,11 +483,10 @@
     <div class="glow-1"></div>
     <div class="glow-2"></div>
 
-    <!-- Canvas nativo de Confete sem dependências de rede -->
+    <!-- Canvas nativo de Confetes -->
     <canvas id="confetti-canvas"></canvas>
 
     <div class="header-container">
-        <!-- Ícone do Cérebro Verde em SVG Puro -->
         <svg class="brain-icon" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M196.2 113.8c-12.7 0-25 2.1-36.6 6-6.1-22.3-26.3-38.9-50.5-38.9-28.7 0-52 23.3-52 52 0 11.4 3.7 21.9 9.9 30.5-18.7 13.9-30.8 35.9-30.8 60.8 0 25.1 12.3 47.3 31.2 61.1-6.1 8.5-9.7 19-9.7 30.3 0 28.7 23.3 52 52 52 16.5 0 31.1-7.7 40.7-19.8 13.5 15.6 33.3 25.6 55.6 25.6 15.8 0 30.4-5.1 42.4-13.8 11 11.5 26.5 18.7 43.8 18.7h16V113.8h-12z" fill="#10b981"/>
             <path d="M315.8 113.8h-12v313.9h16c17.3 0 32.8-7.2 43.8-18.7 12 8.7 26.6 13.8 42.4 13.8 22.3 0 42.1-10 55.6-25.6 9.6 12.1 24.2 19.8 40.7 19.8 28.7 0 52-23.3 52-52 0-11.3-3.6-21.8-9.7-30.3 18.9-13.8 31.2-36 31.2-61.1 0-24.9-12.1-46.9-30.8-60.8 6.2-8.6 9.9-19.1 9.9-30.5 0-28.7-23.3-52-52-52-24.2 0-44.4 16.6-50.5 38.9-11.6-3.9-23.9-6-36.6-6z" fill="#047857"/>
@@ -433,9 +495,19 @@
         <p class="sub-header-text">Responda este questionário com dicas e descubra onde vai ser.</p>
     </div>
 
-    <div class="container" id="quiz-container">
-        
-        <!-- Notificação de Erro Embutida -->
+    <div class="container" id="email-container">
+        <div class="notification-toast" id="email-toast-message"></div>
+        <div class="quiz-box">
+            <h3>Identificação Necessária</h3>
+            <p>Por favor, informe seu e-mail de associado para iniciar o enigma cronometrado e registrar sua participação no segredo.</p>
+        </div>
+        <div class="email-form-box">
+            <input type="email" id="mensa-email" class="email-input" placeholder="seu-email@mensa.org.br" required autocorrect="off" autocapitalize="none">
+            <button class="btn" onclick="startQuizFlow()">Iniciar Desafio</button>
+        </div>
+    </div>
+
+    <div class="container" id="quiz-container" style="display: none;">
         <div class="notification-toast" id="toast-message"></div>
 
         <div class="progress-container">
@@ -470,6 +542,15 @@
         <h3>PERNAMBUCO</h3>
         <p class="reveal-cities">Recife | Olinda | Porto de Galinhas</p>
         <span class="reveal-date">📅 26 a 30 de Maio de 2027</span>
+        
+        <!-- Recibo de tempos e participante -->
+        <div class="stats-box">
+            <p><strong>Membro Participante:</strong> <span class="stats-val" id="resumo-email">--</span></p>
+            <p><strong>Horário de Início:</strong> <span class="stats-val" id="resumo-inicio">--</span></p>
+            <p><strong>Horário de Conclusão:</strong> <span class="stats-val" id="resumo-fim">--</span></p>
+            <p><strong>Tempo Total de Resolução:</strong> <span class="stats-val" id="resumo-duracao" style="color: var(--verde-pe);">--</span></p>
+        </div>
+
         <p style="font-size: 14px; color: var(--texto-secundario);">
             As acomodações e a programação detalhada serão enviadas de forma segura diretamente para o e-mail de todos os membros associados em breve. Até lá, guarde este segredo!
         </p>
@@ -483,7 +564,6 @@
     </div>
 
     <script>
-        // Banco de perguntas cuidadosamente ordenado de acordo com as especificações
         const perguntas = [
             // --- BLOCO 1: CULTURA, GEOGRAFIA E CURIOSIDADES GERAIS (Q1 a Q11) ---
             {
@@ -597,7 +677,34 @@
             }
         ];
 
+        // Variáveis de Estado Globais
         let passoAtual = 0;
+        let emailParticipante = "";
+        let tempoInicio = null;
+        let tempoFim = null;
+
+        function startQuizFlow() {
+            const emailInput = document.getElementById("mensa-email").value.trim();
+            const toast = document.getElementById("email-toast-message");
+
+            // Validação simples de formato de e-mail
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailInput || !emailRegex.test(emailInput)) {
+                toast.innerText = "Por favor, informe um endereço de e-mail válido para prosseguir.";
+                toast.style.display = "block";
+                return;
+            }
+
+            // Armazenar informações e iniciar cronômetro
+            emailParticipante = emailInput;
+            tempoInicio = new Date();
+
+            // Transição suave de telas
+            document.getElementById("email-container").style.display = "none";
+            document.getElementById("quiz-container").style.display = "block";
+            
+            carregarPergunta();
+        }
 
         function carregarPergunta() {
             if (passoAtual >= perguntas.length) {
@@ -680,6 +787,26 @@
         }
 
         function mostrarRevelacao() {
+            tempoFim = new Date();
+            
+            // Cálculos e formatação dos tempos
+            const localeOptions = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const stringInicio = tempoInicio.toLocaleString('pt-BR', localeOptions);
+            const stringFim = tempoFim.toLocaleString('pt-BR', localeOptions);
+            
+            const diferencaMilissegundos = tempoFim - tempoInicio;
+            const totalSegundos = Math.floor(diferencaMilissegundos / 1000);
+            const minutos = Math.floor(totalSegundos / 60);
+            const segundosRestantes = totalSegundos % 60;
+            const stringDuracao = `${minutos}min e ${segundosRestantes}seg`;
+
+            // Injetar dados no resumo
+            document.getElementById("resumo-email").innerText = emailParticipante;
+            document.getElementById("resumo-inicio").innerText = stringInicio;
+            document.getElementById("resumo-fim").innerText = stringFim;
+            document.getElementById("resumo-duracao").innerText = stringDuracao;
+
+            // Transição de visualização
             document.getElementById("quiz-container").style.display = "none";
             document.querySelector(".header-container").style.display = "none";
             document.getElementById("reveal-container").style.display = "block";
@@ -691,7 +818,7 @@
             iniciarConfetes(canvas);
         }
 
-        // Motor nativo de Confetes autônomo (100% livre de conexões externas)
+        // Motor nativo de Confetes autônomo (100% livre de conexões externas para evitar bloqueio de cookies/CDNs)
         function iniciarConfetes(canvas) {
             const ctx = canvas.getContext("2d");
             let animId;
@@ -753,11 +880,7 @@
             }
             desenhar();
         }
-
-        // Iniciar o fluxo principal do app ao terminar de carregar o DOM
-        window.onload = function() {
-            carregarPergunta();
-        };
     </script>
 </body>
 </html>
+```
