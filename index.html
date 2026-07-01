@@ -19,3 +19,822 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background-color: var(--fundo);
             color: var(--texto);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 25px;
+            max-width: 650px;
+            width: 100%;
+        }
+
+        .brain-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 15px rgba(0, 135, 81, 0.6));
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(0, 135, 81, 0.4)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(0, 135, 81, 0.8)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(0, 135, 81, 0.4)); }
+        }
+
+        .logo-placeholder {
+            font-weight: bold;
+            color: var(--verde-pe); 
+            font-size: 26px;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            margin-bottom: 10px;
+        }
+
+        .sub-header-text {
+            color: #b0b0b0;
+            font-size: 16px;
+            margin: 5px 0 0 0;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 100%;
+            background: var(--card-fundo);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            box-sizing: border-box;
+            border: 1px solid #2a2a2a;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--texto);
+            margin-top: 0;
+        }
+
+        /* Tela de Início */
+        #login-container {
+            text-align: center;
+        }
+
+        .input-group {
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px;
+            background: #222;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        .input-field:focus {
+            border-color: var(--azul-pe);
+            outline: none;
+        }
+
+        .jb-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #888;
+            text-decoration: none;
+            line-height: 1.4;
+        }
+
+        .jb-link a {
+            color: var(--amarelo-pe);
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .jb-link a:hover {
+            color: #fff;
+        }
+
+        /* Progresso */
+        .progress-text {
+            color: var(--amarelo-pe);
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .quiz-box {
+            border-left: 5px solid var(--azul-pe);
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+
+        .quiz-box h3 {
+            color: var(--amarelo-pe);
+            margin-bottom: 10px;
+        }
+
+        .quiz-box p {
+            line-height: 1.6;
+            font-size: 16px;
+            color: #e0e0e0;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 14px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background-color: #222;
+            color: #e0e0e0;
+        }
+
+        .option-label:hover {
+            background-color: #2a2a2a;
+            border-color: var(--azul-pe);
+            color: #fff;
+        }
+
+        .option-label input {
+            margin-right: 15px;
+            transform: scale(1.2);
+            accent-color: var(--amarelo-pe);
+        }
+
+        .btn {
+            background-color: var(--azul-pe);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: var(--amarelo-pe);
+            color: #000;
+        }
+
+        .hint-toggle {
+            color: var(--verde-pe);
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            margin-top: 15px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .hint-toggle:hover {
+            color: var(--amarelo-pe);
+        }
+
+        .hint-container {
+            margin-top: 15px;
+            background: #222;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+            border-left: 3px solid var(--verde-pe);
+            color: #ccc;
+        }
+
+        /* Modal Customizado (Substitutos de Alerts) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-box {
+            background: #1a1a1a;
+            border: 2px solid var(--vermelho-pe);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(217, 4, 41, 0.4);
+            animation: shake 0.4s ease-in-out;
+        }
+
+        .modal-box h3 {
+            color: var(--vermelho-pe);
+            margin-bottom: 10px;
+        }
+
+        .modal-box p {
+            color: #ccc;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .modal-btn {
+            background: var(--vermelho-pe);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .modal-btn:hover {
+            background: #b00322;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        /* Confetes de Vitória */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        /* Painel de Estatísticas */
+        .stats-box {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .stats-title {
+            color: var(--amarelo-pe);
+            font-weight: bold;
+            margin-bottom: 12px;
+            font-size: 15px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .stats-item {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        .stats-item span {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* Caixa de Envio de Dados */
+        .api-status {
+            background: #152c1e;
+            border: 1px solid var(--verde-pe);
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 13px;
+            color: #8be3b1;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        /* Tela de Revelação no padrão Bandeira */
+        .reveal-box {
+            display: none;
+            background: linear-gradient(135deg, #0b2545 0%, #000000 100%);
+            color: white;
+            padding: 50px 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid var(--amarelo-pe);
+        }
+
+        .reveal-box h1 { 
+            color: var(--amarelo-pe); 
+            font-size: 32px;
+            text-shadow: 0 2px 10px rgba(255,204,0,0.3);
+        }
+        .reveal-box h2 { color: #ffffff; }
+        .reveal-box h3 { color: var(--vermelho-pe); font-size: 28px; margin-top: 10px; letter-spacing: 2px;}
+        .reveal-box hr { border: none; border-top: 2px solid var(--verde-pe); width: 60%; margin: 25px auto; }
+        
+        .bandeira-detalhe {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .barra {
+            width: 40px;
+            height: 6px;
+            border-radius: 3px;
+        }
+
+        /* Contêiner de Vídeo de Revelação */
+        .video-container {
+            display: none;
+            margin-top: 35px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--amarelo-pe);
+            box-shadow: 0 5px 25px rgba(255,204,0,0.25);
+            aspect-ratio: 16/9;
+            width: 100%;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <!-- Logo alterado para usar logo.png do repositório -->
+        <img class="brain-icon" src="./logo.png" alt="Mensa Brasil" onerror="this.style.display='none'">
+        <div class="logo-placeholder">Anual Gathering 2027 - Mensa Brasil</div>
+        <p class="sub-header-text">Responda este questionário com dicas e descubra onde vai ser.</p>
+    </div>
+
+    <!-- Tela 1: Login de Participante -->
+    <div class="container" id="login-container">
+        <h3>Identificação do Participante</h3>
+        <p style="color: #bbb; font-size: 15px; line-height: 1.5;">Para cronometrarmos sua performance de resolução e enviarmos seus resultados à coordenação, digite seu e-mail da Mensa Brasil abaixo.</p>
+        
+        <div class="input-group">
+            <label for="user-email">Seu e-mail cadastrado:</label>
+            <input type="email" id="user-email" class="input-field" placeholder="exemplo@mensa.org.br" required autocomplete="email">
+        </div>
+
+        <button class="btn" onclick="startQuizFlow()">Iniciar Desafio</button>
+        
+        <p class="jb-link">
+            Se você for um Jovem Brilhante (JB) da Mensa Brasil,<br>
+            <a href="https://ag2027-mb.github.io/Enigma/#">clique aqui para resolver o Enigma</a>.
+        </p>
+    </div>
+
+    <!-- Tela 2: O Quiz -->
+    <div class="container" id="quiz-container" style="display: none;">
+        <div class="progress-text" id="progress-info">Questão 1 de 15</div>
+        <div class="quiz-box">
+            <h3 id="question-title">Carregando...</h3>
+            <p id="question-text">Carregando...</p>
+        </div>
+
+        <div class="options-container" id="options-block"></div>
+
+        <button class="btn" onclick="checkAnswer()">Confirmar Resposta & Avançar</button>
+        
+        <div class="hint-toggle" onclick="toggleHint()">💡 Precisa de uma pista de alto QI?</div>
+        <div class="hint-container" id="hint-box"></div>
+    </div>
+
+    <!-- Tela 3: Revelação Final -->
+    <div class="container reveal-box" id="reveal-container">
+        <h1>O MISTÉRIO FOI REVELADO!</h1>
+        <h2>Preparem as malas para o Nordeste!</h2>
+        <p style="font-size: 16px; max-width: 500px; margin: 20px auto; line-height: 1.6; color: #d0d0d0;">
+            Parabéns! Suas deduções lógicas e conhecimentos avançados desvendaram o segredo do próximo grande encontro da nossa comunidade.
+        </p>
+        
+        <!-- Recibo de Performance do Associado -->
+        <div class="stats-box">
+            <div class="stats-title">Estatísticas do Desafio</div>
+            <div class="stats-item">Membro Participante: <span id="stat-email">-</span></div>
+            <div class="stats-item">Início: <span id="stat-inicio">-</span></div>
+            <div class="stats-item">Fim: <span id="stat-fim">-</span></div>
+            <div class="stats-item">Tempo Total de Resolução: <span id="stat-duracao">-</span></div>
+            <div id="api-feedback-container"></div>
+        </div>
+
+        <hr>
+        <h2 style="font-size: 20px; letter-spacing: 1px; margin-bottom: 0;">ANNUAL GATHERING (AG) 2027</h2>
+        <h3>PERNAMBUCO</h3>
+        <p style="font-size: 20px; font-weight: bold; color: var(--amarelo-pe); margin-top: 5px;">Recife | Olinda | Porto de Galinhas</p>
+        <p style="font-size: 16px; color: #fff; letter-spacing: 1px;">📅 26 a 30 de Maio de 2027</p>
+        
+        <div class="bandeira-detalhe">
+            <div class="barra" style="background-color: var(--azul-pe);"></div>
+            <div class="barra" style="background-color: var(--amarelo-pe);"></div>
+            <div class="barra" style="background-color: var(--verde-pe);"></div>
+            <div class="barra" style="background-color: var(--vermelho-pe);"></div>
+        </div>
+    </div>
+
+    <!-- Tela de Vídeo (Surge após 5 segundos da revelação) -->
+    <div class="video-container" id="promo-video-container">
+        <!-- Vídeo promocional do youtube configurado de forma segura sem loop infinito de carregamento -->
+        <iframe id="promo-iframe" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <!-- Estrutura de Alertas e Modais Customizados -->
+    <div class="modal-overlay" id="custom-modal">
+        <div class="modal-box">
+            <h3 id="modal-title">Aviso</h3>
+            <p id="modal-message">Texto de exemplo.</p>
+            <button class="modal-btn" onclick="closeCustomModal()">OK</button>
+        </div>
+    </div>
+
+    <!-- Tela do Canvas de Confetes -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script>
+        // URL DO GOOGLE APPS SCRIPT PARA ENVIO AUTOMÁTICO DE DADOS
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzFl4BwG8ROLy7wcBLkWsDqHIC43a-T-6wV_ZtDzxNT1w7GwXeZqTMEznIxKhPQXCSglA/exec";
+
+        const perguntas = [
+            // --- BLOCO 1: CULTURA, HISTÓRIA E CURIOSIDADES GERAIS (1 a 11) ---
+            {
+                titulo: "Enigma 1: Literatura e Existencialismo",
+                texto: "Nascida na Ucrânia e naturalizada brasileira, esta icônica autora marcou nossa literatura com seu estilo intimista e o uso brilhante do fluxo de consciência. Qual de seus célebres romances narra a melancólica trajetória da datilógrafa Macabéa?",
+                opcoes: ["A Hora da Estrela", "Perto do Coração Selvagem", "A Paixão Segundo G.H.", "Laços de Família"],
+                correta: "A Hora da Estrela",
+                dica: "Este clássico, adaptado com enorme sucesso para o cinema, foi o último romance publicado em vida pela escritora em 1977."
+            },
+            {
+                titulo: "Enigma 2: A Gastronomia em Camadas",
+                texto: "Um dos maiores símbolos culinários do Brasil é um doce patrimônio imaterial, feito com finíssimas camadas de bolo e recheio de goiabada, enrolado com técnica única. Qual é o nome dessa iguaria regional?",
+                opcoes: ["Rocambole de Minas", "Bolo de Rolo", "Bolo Souza Leão", "Cartola"],
+                correta: "Bolo de Rolo",
+                dica: "As camadas de massa e recheio são quase milimétricas, diferenciando-o totalmente de um rocambole comum."
+            },
+            {
+                titulo: "Enigma 3: Ritmos Ritmados pelo Guarda-Chuva",
+                texto: "Um ritmo musical e dança, declarados Patrimônio Cultural Imaterial da Humanidade pela UNESCO, caracterizam-se pelo compasso frenético, passos atléticos e o uso de uma pequena sombrinha colorida. Que expressão cultural é essa?",
+                opcoes: ["Axé", "Forró", "Maracatu", "Frevo"],
+                correta: "Frevo",
+                dica: "O nome vem do vocabulário popular para a palavra 'ferver', indicando a agitação da dança."
+            },
+            {
+                titulo: "Enigma 4: O Berço da Inovação",
+                texto: "Este ecossistema de inovação, localizado no centro histórico de uma grande capital, é um dos principais parques tecnológicos do Brasil, abrigando centenas de empresas de TI e economia criativa. Qual é o seu nome?",
+                opcoes: ["Porto Digital", "Vale do Silício do Nordeste", "San Pedro Valley", "Tecnopuc"],
+                correta: "Porto Digital",
+                dica: "Fica situado em uma charmosa ilha histórica do litoral nordestino."
+            },
+            {
+                titulo: "Enigma 5: O Galo Inigualável",
+                texto: "O maior bloco de carnaval do planeta, registrado oficialmente no Guinness Book, desfila no sábado de Zé Pereira arrastando mais de dois milhões de foliões. Qual é o nome desse gigante festivo?",
+                opcoes: ["Cordão da Bola Preta", "Galo da Madrugada", "Filhos de Gandhy", "Olodum"],
+                correta: "Galo da Madrugada",
+                dica: "Seu símbolo é uma escultura gigante de uma ave erguida anualmente sobre uma ponte."
+            },
+            {
+                titulo: "Enigma 6: Ciência e Astronomia Pioneira",
+                texto: "O primeiro observatório astronômico das Américas foi construído em solo brasileiro em 1639 por um astrônomo alemão, durante o período de ocupação holandesa comandada por Maurício de Nassau. Em qual cidade ficava esse observatório?",
+                opcoes: ["Bairro de São José", "Cidade Maurícia", "Natal", "São Luís"],
+                correta: "Cidade Maurícia",
+                dica: "Esse era o nome da atual zona central da capital que Nassau planejou."
+            },
+            {
+                titulo: "Enigma 7: Artesanato de Barro Famoso",
+                texto: "O distrito de Alto do Moura é considerado pela UNESCO o maior centro de artes figurativas das Américas, imortalizando a tradicional arte moldada no barro. Em qual famosa cidade do agreste fica esse polo?",
+                opcoes: ["Campina Grande", "Juazeiro do Norte", "Caruaru", "Petrolina"],
+                correta: "Caruaru",
+                dica: "Esta cidade disputa o título de ostentar o maior São João do Mundo."
+            },
+            {
+                titulo: "Enigma 8: O Ponto Mais Oriental do Atlântico",
+                texto: "Um arquipélago vulcânico isolado, famoso mundialmente por suas praias de águas cristalinas, golfinhos rotadores e santuário ecológico, é um dos territórios mais cobiçados do país. De qual paraíso estamos falando?",
+                opcoes: ["Abrolhos", "Fernando de Noronha", "Atol das Rocas", "Trindade"],
+                correta: "Fernando de Noronha",
+                dica: "Fica a cerca de 545 km de distância da costa da capital de seu estado administrador."
+            },
+            {
+                titulo: "Enigma 9: Origens Históricas",
+                texto: "Qual região litorânea abrigou a próspera Nova Holanda no século XVII, deixando marcas definitivas na arquitetura urbana, canais e pontes planejadas por engenheiros europeus?",
+                opcoes: ["Litoral Baiano", "Capitania de Pernambuco", "Costa do Maranhão", "Grão-Pará"],
+                correta: "Capitania de Pernambuco",
+                dica: "Foi o principal palco da economia açucareira colonial."
+            },
+            {
+                titulo: "Enigma 10: Arqueologia no Agreste",
+                texto: "O Vale do Catimbau é o segundo maior parque arqueológico do Brasil, repleto de impressionantes formações de arenito e pinturas rupestres milenares. Em qual estado fica este parque nacional?",
+                opcoes: ["Piauí", "Paraíba", "Pernambuco (Estado)", "Rio Grande do Norte"],
+                correta: "Pernambuco (Estado)",
+                dica: "Situa-se bem no coração do sertão e agreste do estado tema deste desafio."
+            },
+            {
+                titulo: "Enigma 11: O Primeiro Elemento",
+                texto: "Onde foi fundada a primeira sinagoga das Américas (Kahal Zur Israel) e também a faculdade de Direito pioneira do país, junto à de São Paulo?",
+                opcoes: ["Província da Bahia", "Província de Pernambuco", "Corte do Rio de Janeiro", "Vila Rica"],
+                correta: "Província de Pernambuco",
+                dica: "A sinagoga ficava na antiga 'Rua dos Judeus'."
+            },
+
+            // --- PENÚLTIMO BLOCO: AS CIDADES (12, 13 e 14) ---
+            {
+                titulo: "Enigma 12: O Patrimônio e os Gigantes",
+                texto: "Nossa jornada afunila nas sedes do evento! Esta cidade já foi capital e hoje é Patrimônio Histórico da Humanidade pela UNESCO. Suas ladeiras íngremes guardam uma das festas mais famosas do mundo, onde foliões de quatro metros de altura de papel-machê desfilam sem cansar. De qual cidade estamos falando?",
+                opcoes: ["Ouro Preto", "Olinda", "Salvador", "São Luís"],
+                correta: "Olinda",
+                dica: "O nome surgiu da frase exclamada por seu fundador: 'Oh, linda situação para se fundar uma vila!'"
+            },
+            {
+                titulo: "Enigma 13: A Veneza Brasileira e as Pontes",
+                texto: "A próxima pista nos leva à metrópole principal do evento, cortada por rios, pontes e ilhas, apelidada de 'Veneza Brasileira'. É a vibrante capital literária que inspirou poetas como Manuel Bandeira e João Cabral de Melo Neto. Que cidade é esta?",
+                opcoes: ["Florianópolis", "Vitória", "Belém", "Recife"],
+                correta: "Recife",
+                dica: "O nome da cidade vem diretamente das barreiras de recifes de corais que protegem a sua costa."
+            },
+            {
+                titulo: "Enigma 14: As Piscinas Naturais e os Jangadeiros",
+                texto: "A última das três cidades anfitriãs! Este antigo vilarejo de pescadores tem piscinas naturais de águas mornas e transparentes, acessadas por charmosas jangadas. Hoje, é um dos destinos de praia mais cobiçados do mundo. Onde estamos?",
+                opcoes: ["Porto de Galinhas", "Arraial do Cabo", "Jericoacoara", "Maragogi"],
+                correta: "Porto de Galinhas",
+                dica: "O nome surgiu no século XIX, quando aves escondiam a chegada de navios sob o código secreto: 'Tem galinha nova no porto!'."
+            },
+
+            // --- ÚLTIMO BLOCO: O ESTADO (15) ---
+            {
+                titulo: "Enigma Final: O Estado do Leão do Norte",
+                texto: "Juntando as ladeiras históricas de Olinda, os rios cosmopolitas de Recife e os recifes paradisíacos de Porto de Galinhas... Todos esses três destinos fundamentais pertencem a um único estado que carrega o frevo na alma e ostenta um arco-íris em sua bandeira revolucionária. Qual é o estado anfitrião do AG 2027?",
+                opcoes: ["Bahia", "Ceará", "Pernambuco", "Rio Grande do Norte"],
+                correta: "Pernambuco",
+                dica: "Sua belíssima bandeira azul e branca foi herdada diretamente da Revolução de 1817."
+            }
+        ];
+
+        let passoAtual = 0;
+        let participanteEmail = "";
+        let tempoInicio = null;
+        let tempoFim = null;
+
+        // Controle dos Modais Customizados
+        function openCustomModal(title, message) {
+            document.getElementById("modal-title").innerText = title;
+            document.getElementById("modal-message").innerText = message;
+            document.getElementById("custom-modal").style.display = "flex";
+        }
+
+        function closeCustomModal() {
+            document.getElementById("custom-modal").style.display = "none";
+        }
+
+        // Fluxo Inicial: Validação de E-mail
+        function startQuizFlow() {
+            const emailInput = document.getElementById("user-email").value.trim();
+            
+            // Validação simples de formato de e-mail
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailInput || !emailRegex.test(emailInput)) {
+                openCustomModal("E-mail Inválido", "Por favor, digite um endereço de e-mail da Mensa Brasil válido para darmos o início à contagem de tempo.");
+                return;
+            }
+
+            participanteEmail = emailInput;
+            tempoInicio = new Date(); // Registra milissegundo de início
+
+            // Transiciona as telas
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("quiz-container").style.display = "block";
+
+            carregarPergunta();
+        }
+
+        function carregarPergunta() {
+            if (passoAtual >= perguntas.length) {
+                mostrarRevelacao();
+                return;
+            }
+
+            const p = perguntas[passoAtual];
+            document.getElementById("progress-info").innerText = `Questão ${passoAtual + 1} de ${perguntas.length}`;
+            document.getElementById("question-title").innerText = p.titulo;
+            document.getElementById("question-text").innerText = p.texto;
+            document.getElementById("hint-box").innerText = p.dica;
+            document.getElementById("hint-box").style.display = "none";
+
+            const optionsBlock = document.getElementById("options-block");
+            optionsBlock.innerHTML = "";
+
+            p.opcoes.forEach(opcao => {
+                const label = document.createElement("label");
+                label.className = "option-label";
+                label.innerHTML = `<input type="radio" name="quiz-opt" value="${opcao}"> ${opcao}`;
+                optionsBlock.appendChild(label);
+            });
+        }
+
+        function checkAnswer() {
+            const selecionado = document.querySelector('input[name="quiz-opt"]:checked');
+            if (!selecionado) {
+                openCustomModal("Atenção", "Por favor, selecione uma das opções de resposta para poder avançar.");
+                return;
+            }
+
+            if (selecionado.value === perguntas[passoAtual].correta) {
+                passoAtual++;
+                carregarPergunta();
+                window.scrollTo(0, 0);
+            } else {
+                openCustomModal("Resposta Errada", "O intelecto mensano exige um pouco mais de reflexão. Estude a dica e tente de novo!");
+            }
+        }
+
+        function toggleHint() {
+            const hb = document.getElementById("hint-box");
+            hb.style.display = hb.style.display === "block" ? "none" : "block";
+        }
+
+        function mostrarRevelacao() {
+            tempoFim = new Date(); // Registra término
+
+            document.getElementById("quiz-container").style.display = "none";
+            document.getElementById("reveal-container").style.display = "block";
+            window.scrollTo(0, 0);
+
+            // Cálculos e formatação de tempos
+            const localeOptions = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const stringInicio = tempoInicio.toLocaleString('pt-BR', localeOptions);
+            const stringFim = tempoFim.toLocaleString('pt-BR', localeOptions);
+
+            const diferencaMilissegundos = tempoFim - tempoInicio;
+            const totalSegundos = Math.floor(diferencaMilissegundos / 1000);
+            const minutos = Math.floor(totalSegundos / 60);
+            const segundosRestantes = totalSegundos % 60;
+            const stringDuracao = `${minutos}min e ${segundosRestantes}seg`;
+
+            // Exibe resultados na tela do usuário
+            document.getElementById("stat-email").innerText = participanteEmail;
+            document.getElementById("stat-inicio").innerText = stringInicio;
+            document.getElementById("stat-fim").innerText = stringFim;
+            document.getElementById("stat-duracao").innerText = stringDuracao;
+
+            // Inicia os confetes nativos no Canvas
+            iniciarEfeitoVitoria();
+
+            // Envia os dados silenciosamente para o Google Apps Script
+            enviarDadosAoGoogle(participanteEmail, stringInicio, stringFim, stringDuracao);
+
+            // Agenda a aparição e o autoplay do vídeo em 5 segundos (5000ms)
+            setTimeout(() => {
+                const promoContainer = document.getElementById("promo-video-container");
+                const promoIframe = document.getElementById("promo-iframe");
+                
+                // Ativa o container do vídeo
+                promoContainer.style.display = "block";
+                
+                // Insere a URL com autoplay ativado
+                promoIframe.src = "https://www.youtube.com/embed/N97bwM6aai4?autoplay=1&mute=0";
+                
+                // Rolagem suave para manter o foco visual no vídeo
+                promoContainer.scrollIntoView({ behavior: 'smooth' });
+            }, 5000);
+        }
+
+        // Dispara requisição HTTP POST para o Apps Script
+        function enviarDadosAoGoogle(email, inicio, fim, duracao) {
+            const apiContainer = document.getElementById("api-feedback-container");
+            apiContainer.innerHTML = `<div class="api-status">⏳ Sincronizando dados de tempo com a coordenação...</div>`;
+
+            const payload = {
+                participante: email,
+                horario_inicio: inicio,
+                horario_fim: fim,
+                tempo_total_resolucao: duracao
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors", // Necessário para evitar restrições comuns de CORS com o Apps Script
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                apiContainer.innerHTML = `<div class="api-status" style="background: #112d1b; border-color: var(--verde-pe); color: #76ff98;">🏆 Dados gravados e enviados com sucesso à coordenação!</div>`;
+            })
+            .catch(error => {
+                console.error("Erro na comunicação:", error);
+                apiContainer.innerHTML = `<div class="api-status" style="background: #3a1515; border-color: var(--vermelho-pe); color: #ff8e8e;">⚠️ Não foi possível sincronizar o tempo em tempo real, mas seus dados estão salvos nesta tela.</div>`;
+            });
+        }
+
+        // SISTEMA DE CONFETES NATIVO (Sem JS Externo)
+        const canvas = document.getElementById("confetti-canvas");
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+        const colors = ["#0056b3", "#ffcc00", "#008751", "#d90429", "#ffffff"];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+
+        function createParticle() {
+            return {
+                x: Math.random() * canvas.width,
+                y: -20,
+                size: Math.random() * 8 + 4,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                speedX: Math.random() * 4 - 2,
+                speedY: Math.random() * 3 + 2,
+                rotation: Math.random() * 360,
+                rotationSpeed: Math.random() * 10 - 5
+            };
+        }
+
+        function updateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Limita o total de confetes ativos para manter excelente performance gráfica
+            if (particles.length < 150 && Math.random() < 0.4) {
+                particles.push(createParticle());
+            }
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.x += p.speedX;
+                p.y += p.speedY;
+                p.rotation += p.rotationSpeed;
+
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate((p.rotation * Math.PI) / 180);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                ctx.restore();
+
+                // Remove confetes que ultrapassaram a borda inferior
+                if (p.y > canvas.height) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(updateParticles);
+        }
+
+        function iniciarEfeitoVitoria() {
+            resizeCanvas();
+            updateParticles();
+        }
+
+        // Usar DOMContentLoaded garante que a tela inicial abra IMEDIATAMENTE
+        // sem travar ou esperar que links de imagem que não existem no repositório local carreguem
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("login-container").style.display = "block";
+            document.getElementById("quiz-container").style.display = "none";
+            document.getElementById("reveal-container").style.display = "none";
+        });
+    </script>
+</body>
+</html>
