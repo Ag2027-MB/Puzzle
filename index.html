@@ -451,6 +451,13 @@
             </div>
             <div class="api-status" id="api-status-msg">Registrando participação no banco de dados...</div>
         </div>
+
+        <!-- Container Responsivo para o Vídeo de Revelação -->
+        <div id="video-wrapper" style="display: none; margin-top: 30px; border-radius: 8px; overflow: hidden; border: 2px solid var(--amarelo-pe); box-shadow: 0 0 20px rgba(255, 204, 0, 0.2); transition: all 0.5s ease;">
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <iframe id="promo-video" style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0;" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 
     <!-- Modal de Alerta Customizado (Evita travamentos de alert nativos) -->
@@ -463,7 +470,7 @@
 
     <script>
         // COLE AQUI A URL QUE VOCÊ OBTEVE DO GOOGLE APPS SCRIPT
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzFl4BwG8ROLy7wcBLkWsDqHIC43a-T-6wV_ZtDzxNT1w7GwXeZqTMEznIxKhPQXCSglA/exec";
+        const GOOGLE_SCRIPT_URL = "SUA_URL_DO_GOOGLE_APPS_SCRIPT_AQUI";
 
         const perguntas = [
             // --- BLOCO 1: CULTURA, HISTÓRIA E CURIOSIDADES GERAIS (1 a 11) ---
@@ -700,6 +707,19 @@
 
             // Envio assíncrono para o Google Sheets via Apps Script
             enviarDadosAoGoogle(emailParticipante, stringInicio, stringFim, stringDuracao);
+
+            // Espera 10 segundos, exibe o player e começa a reproduzir o vídeo de Pernambuco
+            setTimeout(() => {
+                const wrapper = document.getElementById("video-wrapper");
+                const iframe = document.getElementById("promo-video");
+                
+                // Conversão do link fornecido para a estrutura de embed do YouTube habilitando reprodução automática
+                iframe.src = "https://www.youtube.com/embed/N97bwM6aai4?autoplay=1";
+                wrapper.style.display = "block";
+                
+                // Rolagem suave da página até a nova atração
+                wrapper.scrollIntoView({ behavior: 'smooth' });
+            }, 10000);
         }
 
         function enviarDadosAoGoogle(email, inicio, fim, duracao) {
